@@ -1,10 +1,10 @@
-# CDAutoAlert 🚗💨
+# CDAutoAlert
 
 **CDAutoAlert** es una solución profesional y sencilla para Centros de Diagnóstico Automotor (CDA). Permite gestionar clientes, vehículos y realizar un seguimiento riguroso de los vencimientos de documentos críticos como la Revisión Técnico-Mecánica (RTM) y el SOAT.
 
 Este proyecto ha sido desarrollado con un enfoque en código limpio, arquitectura organizada y una interfaz de usuario moderna y minimalista.
 
-## 🚀 Tecnologías
+## Tecnologías
 
 ### Frontend
 - **React 19** con **TypeScript**
@@ -19,13 +19,13 @@ Este proyecto ha sido desarrollado con un enfoque en código limpio, arquitectur
 - **JWT** (Autenticación segura)
 - **Bcrypt** (Encriptación de contraseñas)
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-- 🔐 **Autenticación**: Registro e inicio de sesión seguro con JWT.
-- 👥 **Gestión de Clientes**: CRUD completo para administrar información de contacto.
-- 🚘 **Gestión de Vehículos**: Control de vehículos asociados a cada cliente.
-- 📅 **Alertas de Vencimiento**: Visualización clara de fechas de vencimiento de RTM y SOAT.
-- 📱 **Interfaz Responsiva**: Diseño adaptativo para diferentes tamaños de pantalla.
+- **Autenticación**: Registro e inicio de sesión seguro con JWT.
+- **Gestión de Clientes**: CRUD completo para administrar información de contacto.
+- **Gestión de Vehículos**: Control de vehículos asociados a cada cliente.
+- **Alertas de Vencimiento**: Visualización clara de fechas de vencimiento de RTM y SOAT.
+- **Interfaz Responsiva**: Diseño adaptativo para diferentes tamaños de pantalla.
 
 ## 🛠️ Instalación Local
 
@@ -66,5 +66,5 @@ npm install
 npm run dev
 ```
 
-## 📝 Licencia
+## Licencia
 Este proyecto es para fines educativos y de portafolio.
