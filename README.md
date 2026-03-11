@@ -27,7 +27,7 @@ Este proyecto ha sido desarrollado con un enfoque en código limpio, arquitectur
 - **Alertas de Vencimiento**: Visualización clara de fechas de vencimiento de RTM y SOAT.
 - **Interfaz Responsiva**: Diseño adaptativo para diferentes tamaños de pantalla.
 
-## 🛠️ Instalación Local
+## Instalación Local
 
 ### Requisitos previos
 - Node.js (v18+)
