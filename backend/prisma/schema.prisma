@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  nombre     String
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+}
+
+model Cliente {
+  id         Int        @id @default(autoincrement())
+  nombre     String
+  documento  String     @unique
+  telefono   String
+  email      String
+  created_at DateTime   @default(now())
+  vehiculos  Vehiculo[]
+}
+
+model Vehiculo {
+  id                     Int      @id @default(autoincrement())
+  cliente_id             Int
+  placa                  String   @unique
+  marca                  String
+  modelo                 String
+  fecha_vencimiento_rtm  DateTime
+  fecha_vencimiento_soat DateTime
+  created_at             DateTime @default(now())
+  cliente                Cliente  @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
+}
