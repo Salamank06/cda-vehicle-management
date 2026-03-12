@@ -8,6 +8,7 @@ dotenv.config();
 import authRoutes from './routes/authRoutes';
 import clienteRoutes from './routes/clienteRoutes';
 import vehiculoRoutes from './routes/vehiculoRoutes';
+import prisma from './utils/prisma';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,17 +32,29 @@ app.get('/', (req, res) => {
   res.send('CDAutoAlert API is running');
 });
 
+// Database health check
+app.get('/db-check', async (req, res) => {
+  try {
+    const userCount = await prisma.user.count();
+    res.json({ status: 'connected', userCount });
+  } catch (error: any) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+});
+
 // routes setup
 app.use('/auth', authRoutes);
 app.use('/clientes', clienteRoutes);
 app.use('/vehiculos', vehiculoRoutes);
 
+// Global Error Handler
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error('SERVER ERROR:', err);
+  res.status(500).json({
+    message: 'Internal Server Error',
+    error: err.message || 'Unknown error'
+  });
+});
+
 // export app for vercel
 export default app;
-
-// start server only if not in production or if explicitly told to
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
