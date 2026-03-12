@@ -13,7 +13,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // middleware setup
-app.use(cors());
+app.use(cors({
+  origin: '*', // Allow all origins for now to avoid CORS issues in production
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // basic health check route

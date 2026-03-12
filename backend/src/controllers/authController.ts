@@ -29,9 +29,16 @@ export const register = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(201).json({ message: 'User registered successfully', userId: user.id });
-  } catch (error) {
-    res.status(500).json({ message: 'Error registering user', error });
+    res.status(201).json({ 
+      message: 'User registered successfully', 
+      user: { id: user.id, nombre: user.nombre, email: user.email } 
+    });
+  } catch (error: any) {
+    console.error('Error in register:', error);
+    res.status(500).json({ 
+      message: 'Error registering user', 
+      error: error.message || 'Internal Server Error' 
+    });
   }
 };
 
