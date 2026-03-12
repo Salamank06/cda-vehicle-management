@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -5,9 +6,9 @@ import Clientes from './pages/Clientes';
 import Vehiculos from './pages/Vehiculos';
 
 // check if user is authenticated
-const PrivateRoute = ({ children }: { children: JSX.Element }) => {
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const token = localStorage.getItem('token');
-  return token ? children : <Navigate to="/login" />;
+  return token ? <>{children}</> : <Navigate to="/login" />;
 };
 
 function App() {
