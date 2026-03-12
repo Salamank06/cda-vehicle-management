@@ -20,11 +20,19 @@ const Login = () => {
     if (isRegistering) {
       // handle registration
       try {
-        await api.post('/auth/register', { nombre, email, password });
+        console.log('Intentando registro en:', api.defaults.baseURL + '/auth/register');
+        const response = await api.post('/auth/register', { nombre, email, password });
+        console.log('Registro exitoso:', response.data);
         setMessage('Registration successful! Please log in.');
         setIsRegistering(false);
       } catch (err: any) {
-        setError(err.response?.data?.message || 'Registration failed');
+        console.error('ERROR DETALLADO EN REGISTRO:', {
+          message: err.message,
+          response: err.response?.data,
+          status: err.response?.status,
+          config: err.config?.url
+        });
+        setError(err.response?.data?.message || err.response?.data?.error || `Error: ${err.message}`);
       }
     } else {
       // handle login
