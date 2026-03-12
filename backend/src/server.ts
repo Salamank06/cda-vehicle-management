@@ -20,6 +20,12 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Log requests for debugging in production
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
+
 // basic health check route
 app.get('/', (req, res) => {
   res.send('CDAutoAlert API is running');
