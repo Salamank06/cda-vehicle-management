@@ -20,19 +20,27 @@ const Login = () => {
     if (isRegistering) {
       // handle registration
       try {
-        console.log('Intentando registro en:', api.defaults.baseURL + '/auth/register');
+        const targetUrl = `${api.defaults.baseURL}/auth/register`;
+        console.log('Intentando registro en:', targetUrl);
         const response = await api.post('/auth/register', { nombre, email, password });
         console.log('Registro exitoso:', response.data);
         setMessage('Registration successful! Please log in.');
         setIsRegistering(false);
       } catch (err: any) {
-        console.error('ERROR DETALLADO EN REGISTRO:', {
-          message: err.message,
-          response: err.response?.data,
-          status: err.response?.status,
-          config: err.config?.url
-        });
-        setError(err.response?.data?.message || err.response?.data?.error || `Error: ${err.message}`);
+        console.error('ERROR COMPLETO:', err);
+        
+        let errorMsg = 'Error desconocido';
+        if (err.response) {
+          // El servidor respondió con un error (4xx, 5xx)
+          errorMsg = err.response.data?.message || err.response.data?.error || `Error del servidor: ${err.response.status}`;
+        } else if (err.request) {
+          // La petición se hizo pero no hubo respuesta
+          errorMsg = `No hubo respuesta del servidor en: ${api.defaults.baseURL}. Verifica la URL en Vercel.`;
+        } else {
+          errorMsg = err.message;
+        }
+        
+        setError(errorMsg);
       }
     } else {
       // handle login
