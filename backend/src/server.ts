@@ -26,7 +26,12 @@ app.use('/auth', authRoutes);
 app.use('/clientes', clienteRoutes);
 app.use('/vehiculos', vehiculoRoutes);
 
-// start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// export app for vercel
+export default app;
+
+// start server only if not in production or if explicitly told to
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
